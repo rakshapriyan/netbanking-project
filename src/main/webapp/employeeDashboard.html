@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Net Banking Dashboard</title>
+  <link rel="stylesheet" href="./css/employeeDashboard.css">
+  <link rel="stylesheet" href="./css/sidebar.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+    <div id="sidebar">
+        <ul id="sidebar-links">
+            <!-- Links will be inserted dynamically -->
+        </ul>
+    </div>
+      <!-- Dashboard Main Section -->
+      <div class="dashboard-main">
+        <h1 id="roleTitle"></h1> <!-- Title based on role -->
+        
+        <!-- Chart Section -->
+        <div class="chart-container">
+          <canvas id="transactionChart"></canvas>
+        </div>
+    
+        <!-- Dashboard Stats -->
+        <div class="dashboard-stats">
+          <div class="stats-box">
+            <h3>Total Online Users</h3>
+            <p id="totalOnlineUsers">0</p>
+          </div>
+          <div class="stats-box">
+            <h3>Total Credited Amount</h3>
+            <p id="totalCreditedAmount">0</p>
+          </div>
+          <div class="stats-box">
+            <h3>Total Debitted Amount</h3>
+            <p id="totalDebittedAmount">0</p>
+          </div>
+    
+          <!-- Manager-Specific Box -->
+          <div id="managerOnlineEmployees" class="stats-box" style="display: none;">
+            <h3>Total Online Employees</h3>
+            <p id="totalOnlineEmployees">0</p>
+          </div>
+        </div>
+    
+        <!-- Recent Transactions Table -->
+        <!-- Recent Transactions Table -->
+        <div class="transactions-table">
+            <h3>Recent 10 Transactions</h3>
+            <table>
+            <thead>
+                <tr>
+                <th>Transaction ID</th>
+                <th>Transaction Number</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Type</th>
+                <th>Created By</th>
+                <th>Description</th>
+                <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="transactionList">
+                <!-- Transaction rows will be injected here -->
+            </tbody>
+            </table>
+        </div>
+  
+    </div>
+    
+<script src="./js/employeeDashboard.js"></script>
+<script src="./js/sidebar.js"></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+/* General Styling */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f9;
+    color: #333;
+}
+
+/* Sidebar & Profile Page Styles */
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+form .form-group {
+    margin-bottom: 15px;
+}
+
+form .form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+form .form-group input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:disabled {
+    background-color: #ccc;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Navbar Styling (top navbar) */
+.navbar-top {
+    background: linear-gradient(90deg, #6a11cb, #2575fc);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-top .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Navigation Links for Top Navbar */
+.navbar-top ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-top ul li {
+    position: relative;
+    margin: 0 10px;
+}
+
+.navbar-top ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 0.75rem 1rem;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.navbar-top ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* Active Link for Top Navbar */
+.navbar-top ul li a.active {
+    background: linear-gradient(90deg, #2575fc, #6a11cb);
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Profile Dropdown in Top Navbar */
+.navbar-top .profile-dropdown {
+    position: relative;
+}
+
+.navbar-top .profile-btn {
+    cursor: pointer;
+    color: white;
+}
+
+.navbar-top .profile-menu {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 50px;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.navbar-top .profile-dropdown:hover .profile-menu {
+    display: block;
+}
+
+.navbar-top .profile-menu a {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.navbar-top .profile-menu a:hover {
+    background-color: #ddd;
+}
+
+/* Sidebar Navbar Styles */
+.navbar-sidebar {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-sidebar .logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbar-sidebar .profile-btn {
+    cursor: pointer;
+    color: white;
+}
+
+.navbar-sidebar .profile-menu {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 50px;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.navbar-sidebar .profile-dropdown:hover .profile-menu {
+    display: block;
+}
+
+.navbar-sidebar .profile-menu a {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.navbar-sidebar .profile-menu a:hover {
+    background-color: #ddd;
+}
+
+/* Animation for Click Effect */
+@keyframes zoomText {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(2.5);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+}
+
+.clicked-animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    z-index: 9999;
+    animation: zoomText 2s ease-in-out forwards;
+    font-size: 3rem;
+}

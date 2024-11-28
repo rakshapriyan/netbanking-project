@@ -1,0 +1,107 @@
+user:
+  class_name: "User"
+  columns:
+    user_id: "userId"
+    username: "username"
+    password: "password"
+    name: "name"
+    phone_number: "phoneNumber"
+    email_id: "emailId"
+    role: "role"
+    is_online: "isOnline"
+    user_status: "userStatus"
+    created_by: "createdBy"
+    created_timestamp: "createdTimestamp"
+    last_modified_by: "lastModifiedBy"
+    last_modified_timestamp: "lastModifiedTimestamp"
+
+customer:
+  class_name: "Customer"
+  columns:
+    customer_id: "customerId"
+    aadhar_number: "aadharNumber"
+    pan_number: "panNumber"
+    address: "address"
+    city: "city"
+    state: "state"
+    pincode: "pincode"
+  extends: "User"
+  foreign_keys:
+    - field: "customer_id"
+      references: "user_id"
+      referenced_class: "User"
+
+employee:
+  class_name: "Employee"
+  columns:
+    employee_id: "employeeId"
+    branch_id: "branchId"
+  extends: "User"
+  foreign_keys:
+    - field: "employee_id"
+      references: "user_id"
+      referenced_class: "User"
+
+branch:
+  class_name: "Branch"
+  columns:
+    branch_id: "branchId"
+    name: "name"
+    ifsc_code: "ifscCode"
+    manager_id: "managerId"
+    address: "address"
+    city: "city"
+    state: "state"
+    pincode: "pincode"
+    created_by: "createdBy"
+    created_timestamp: "createdTimestamp"
+    modified_by: "modifiedBy"
+    modified_timestamp: "modifiedTimestamp"
+
+account:
+  class_name: "Account"
+  columns:
+    account_number: "accountNumber"
+    customer_id: "customerId"
+    branch_id: "branchId"
+    balance: "balance"
+    account_status: "accountStatus"
+    date_opened: "dateOpened"
+    date_closed: "dateClosed"
+    created_by: "createdBy"
+    created_timestamp: "createdTimestamp"
+    last_modified_by: "lastModifiedBy"
+    last_modified_timestamp: "lastModifiedTimestamp"
+  
+
+transaction:
+  class_name: "Transaction"
+  columns:
+    transaction_id: "transactionId"
+    transaction_number: "transactionNumber"
+    customer_id: "customerId"
+    account_number: "accountNumber"
+    transaction_account_number: "transactionAccountNumber"
+    transaction_type: "transactionType"
+    amount: "amount"
+    timestamp: "timestamp"
+    status: "status"
+    description: "description"
+    created_by: "createdBy"
+    created_timestamp: "createdTimestamp"
+  foreign_keys:
+    - field: "account_number"
+      references: "account_number"
+      referenced_class: "Account"
+
+login_activity:
+  class_name: "LoginActivity"
+  columns:
+    login_id: "loginId"
+    user_id: "userId"
+    login_timestamp: "loginTimestamp"
+    logout_timestamp: "logoutTimestamp"
+  foreign_keys:
+    - field: "user_id"
+      references: "user_id"
+      referenced_class: "User"

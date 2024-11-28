@@ -1,0 +1,211 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f6f9;
+    color: #333;
+  }
+  
+  .dashboard {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0056b3;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  header nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  
+  header nav ul li {
+    margin: 0 10px;
+  }
+  
+  header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  header nav ul li a:hover {
+    color: #cce6ff;
+  }
+  
+  /* Welcome Section */
+  .welcome {
+    margin: 20px 0;
+    text-align: center;
+  }
+  
+  .welcome h1 {
+    font-size: 2rem;
+    color: #0056b3;
+  }
+  
+  .welcome p {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  /* Overview Cards */
+  .overview {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .blue-card {
+    background: linear-gradient(135deg, #0056b3, #3388ff);
+    color: #fff;
+  }
+  
+  .blue-card h2 {
+    color: #cce6ff;
+  }
+  
+  .white-card {
+    color: #333;
+  }
+  
+  /* Account Selection Section */
+  .account-selection {
+    margin-top: 40px;
+  }
+  
+  .account-selection h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #0056b3;
+  }
+  
+  #accountDropdown {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .account-card {
+    padding: 15px;
+    display: none;
+    background: #f9faff;
+    border: 1px solid #0056b3;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease-in-out, transform 0.3s ease-in-out;
+  }
+  
+  .account-card.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .account-card.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  /* Transactions Table */
+  .transactions {
+    margin-top: 40px;
+  }
+  
+  .transactions h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #0056b3;
+  }
+  
+  .transactions table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .transactions th,
+  .transactions td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .transactions th {
+    background: #0056b3;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .transactions tr:nth-child(odd) {
+    background: #f9faff;
+  }
+  
+  .transactions tr:hover {
+    background: #e9f3ff;
+  }
+  
+  #downloadBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #0056b3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #downloadBtn:hover {
+    background-color: #003a80;
+  }
+  
+  /* Summary Section */
+  .summary {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  
+  .summary .card {
+    width: 48%;
+  }
+  

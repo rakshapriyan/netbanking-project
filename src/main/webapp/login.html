@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetBanking Login</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="background">
+        <!-- Blue-themed subtle animations -->
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+    <div class="login-container">
+        <!-- Logo at the top -->
+        <div class="logo">
+            <img src="logo.png" alt="Logo" class="logo-img">
+        </div>
+        
+        <h1>Welcome to NetBanking</h1>
+        <p class="instructions-header">Please enter your username and password to access your account.</p>
+        <form id="loginForm" action="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" autocomplete="username" required>
+                <small class="help-text">Your username is typically your registered email address.</small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+                <small class="help-text">Ensure your password is at least 8 characters long.</small>
+            </div>
+            <button type="submit" class="btn">Login</button>
+
+            <div class="forgot-password">
+                <a href="#">Forgot Password?</a>
+            </div>
+            
+            <!-- Instructions Section -->
+            <div class="instructions">
+                <h3>Instructions:</h3>
+                <ul>
+                    <li>Ensure your login credentials are correct.</li>
+                    <li>Do not share your username or password with anyone.</li>
+                    <li>For security, always logout after accessing your account.</li>
+                    <li>If you face any issues, contact our support team.</li>
+                </ul>
+            </div>
+        </form>
+    </div>
+    <script src="./js/login.js"></script>
+</body>
+</html>

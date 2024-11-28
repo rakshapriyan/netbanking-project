@@ -1,0 +1,81 @@
+/* Navbar Styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0056b3;
+  padding: 15px 20px;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar nav ul li {
+  margin: 0 15px;
+}
+
+.navbar nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar nav ul li a:hover {
+  color: #cce6ff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar nav ul li {
+    margin-bottom: 10px;
+  }
+}
+
+
+
+
+
+
+// Create Navbar
+function createNavbar() {
+  const navbar = document.createElement("header");
+  navbar.classList.add("navbar");
+
+  navbar.innerHTML = `
+    <div class="logo">MyBank</div>
+    <nav>
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="accounts.html">Accounts</a></li>
+        <li><a href="transactions.html">Transactions</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="logout.html">Logout</a></li>
+      </ul>
+    </nav>
+  `;
+
+  // Append Navbar to the Top of the Page
+  document.body.prepend(navbar);
+}
+
+// Call the function to render the Navbar
+createNavbar();

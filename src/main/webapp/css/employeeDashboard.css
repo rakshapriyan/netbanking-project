@@ -1,0 +1,101 @@
+/* Dashboard Main Styling */
+.dashboard-main {
+    margin-left: 260px;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .dashboard-main h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #0056b3;
+    margin-bottom: 20px;
+  }
+  
+  .chart-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .dashboard-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  
+  .stats-box {
+    width: 23%;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .stats-box h3 {
+    color: #0056b3;
+    font-size: 20px;
+  }
+  
+  .stats-box p {
+    font-size: 30px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .stats-box:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.05);
+  }
+  
+  .transactions-table {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .transactions-table h3 {
+    font-size: 24px;
+    color: #0056b3;
+    margin-bottom: 20px;
+  }
+  
+  .transactions-table table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .transactions-table th, .transactions-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .transactions-table th {
+    background-color: #0056b3;
+    color: white;
+  }
+  
+  .transactions-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-main {
+      margin-left: 0;
+    }
+  
+    .stats-box {
+      width: 48%;
+      margin-bottom: 20px;
+    }
+  
+    .chart-container {
+      width: 100%;
+    }
+  }
+  

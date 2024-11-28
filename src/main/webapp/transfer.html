@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amount Transfer</title>
+    <link rel="stylesheet" href="./css/transfer.css">
+    <link rel="stylesheet" href="./css/navbar.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">MyApp</div>
+        <ul id="nav-links" class="nav-center"></ul>
+        <div class="profile-dropdown">
+            <a class="profile-btn">Profile</a>
+            <div class="profile-menu">
+                <a href="/profile.html">Account Details</a>
+                <a href="/logout.html">Logout</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1 class="page-title">Amount Transfer</h1>
+        <form id="transferForm" class="form">
+            <!-- From Account -->
+            <div class="form-group">
+                <label for="fromAccount">From Account</label>
+                <select id="fromAccount" name="fromAccount" class="form-control" required>
+                    <option value="" disabled selected>Select From Account</option>
+                </select>
+            </div>
+
+            <!-- From Account Bank -->
+            
+
+            <!-- Transfer Type -->
+            <div class="form-group radio-group">
+                <label>
+                    <input type="radio" name="transferType" value="self" checked> Self Transfer
+                </label>
+                <label>
+                    <input type="radio" name="transferType" value="other"> Transfer to Other Account
+                </label>
+            </div>
+
+            <!-- Self Transfer Fields -->
+            <!-- Self Transfer Fields (To Account dropdown is here) -->
+            <div id="selfTransferFields" class="form-group">
+                <label for="toAccount">To Account</label>
+                <select id="toAccount" name="toAccount" class="form-control">
+                    <option value="" disabled selected>Select To Account</option>
+                </select>
+            </div>
+
+
+            <!-- Other Transfer Fields -->
+            <div id="transferToOtherFields" class="form-group hidden">
+                <label for="recipientBank">Recipient Bank</label>
+
+                <!-- Recipient Bank (Styled Radio Buttons) -->
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="recipientBank" value="Yes" checked> Yes (Same Bank)
+                    </label>
+                    <label>
+                        <input type="radio" name="recipientBank" value="No"> No (Different Bank)
+                    </label>
+                </div>
+                <br/><br/>
+                <label for="recipientAccount">Recipient Account Number</label>
+                <input type="text" id="recipientAccount" name="recipientAccount" class="form-control" placeholder="Enter Account Number"><br/><br/><br/><br/>
+
+                <label for="recipientName">Recipient Name</label>
+                <input type="text" id="recipientName" name="recipientName" class="form-control" placeholder="Enter Recipient Name">
+
+                <!-- IFSC Code (only shown if "No" is selected) -->
+                <div id="ifscCodeField" class="form-group hidden">
+                    <label for="ifscCode">IFSC Code</label>
+                    <input type="text" id="ifscCode" name="ifscCode" class="form-control" placeholder="Enter IFSC Code">
+                </div>
+            </div>
+
+            <!-- Common Fields -->
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" id="amount" name="amount" class="form-control" min="1" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" id="description" name="description" class="form-control" placeholder="Optional">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Transfer</button>
+        </form>
+    </div>
+
+    <script src="./js/transfer.js"></script>
+    <script src="./js/navbar.js"></script>
+</body>
+</html>
