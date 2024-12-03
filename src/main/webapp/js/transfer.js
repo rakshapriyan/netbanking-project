@@ -6,67 +6,42 @@ document.addEventListener("DOMContentLoaded", () => {
     const transferToOtherFields = document.getElementById("transferToOtherFields");
     const recipientBankInputs = document.querySelectorAll('input[name="recipientBank"]');
     const ifscCodeField = document.getElementById("ifscCodeField");
-    const fromBankDropdown = document.getElementById("fromBank");
     const transferForm = document.getElementById("transferForm");
 
-    // Fetch and populate accounts for both From and To Accounts
-    async function fetchAccounts() {
-        try {
-            const axiosInstance = axios.create({
-                baseURL: 'http://localhost:8080/Netbanking1',
-                timeout: 5000,
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: sessionStorage.getItem('token'),
-                },
-            });
-            const response = await axiosInstance.get('/accounts');
-            const accounts = response.data;
+    const userRole = sessionStorage.getItem("role"); // Fetch user role (customer, employee, or manager)
 
-            accounts.forEach(account => {
-                const option = document.createElement("option");
-                option.value = account.accountNumber;
-                option.textContent = `Account: ${account.accountNumber}`;
-                fromAccountDropdown.appendChild(option);
-
-                const toOption = document.createElement("option");
-                toOption.value = account.accountNumber;
-                toOption.textContent = `Account: ${account.accountNumber}`;
-                toAccountDropdown.appendChild(toOption);
+    // Hide transfer options for employee and manager roles
+    function configureRoleBasedUI() {
+        if (userRole === "employee" || userRole === "manager") {
+            // Hide transfer type radio buttons
+            document.querySelector(".radio-group").classList.add("hidden");
+            transferToOtherFields.classList.remove("hidden");
+            selfTransferFields.classList.add("hidden");
+        } else if (userRole === "customer") {
+            // Show transfer type options for customers
+            transferTypeInputs.forEach(input => {
+                input.addEventListener("change", () => {
+                    if (input.value === "self") {
+                        // Show the "To Account" dropdown
+                        selfTransferFields.classList.remove("hidden");
+                        transferToOtherFields.classList.add("hidden");
+                    } else if (input.value === "other") {
+                        // Hide the "To Account" dropdown
+                        selfTransferFields.classList.add("hidden");
+                        transferToOtherFields.classList.remove("hidden");
+                    }
+                });
             });
-        } catch (error) {
-            console.error("Error fetching accounts:", error);
         }
     }
 
-    // Fetch and populate bank options (both sender and recipient)
-
-    // Toggle fields based on transfer type selection
-    transferTypeInputs.forEach(input => {
-        input.addEventListener("change", () => {
-            if (input.value === "self") {
-                selfTransferFields.classList.add("show");
-                transferToOtherFields.classList.remove("show");
-
-                // Show "To Account" dropdown when "Self Transfer" is selected
-                toAccountDropdown.closest('.form-group').classList.remove("hidden");
-            } else {
-                selfTransferFields.classList.remove("show");
-                transferToOtherFields.classList.add("show");
-
-                // Hide "To Account" dropdown when "Transfer to Other Account" is selected
-                toAccountDropdown.closest('.form-group').classList.add("hidden");
-            }
-        });
-    });
-
-    // Show or hide IFSC code input based on recipient bank selection (Yes/No)
+    // Show or hide IFSC code input based on recipient bank selection
     recipientBankInputs.forEach(input => {
         input.addEventListener("change", () => {
             if (input.value === "No") {
-                ifscCodeField.classList.add("show");
+                ifscCodeField.classList.remove("hidden");
             } else {
-                ifscCodeField.classList.remove("show");
+                ifscCodeField.classList.add("hidden");
             }
         });
     });
@@ -103,5 +78,39 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
+    // Fetch and populate accounts
+    async function fetchAccounts() {
+        try {
+            const axiosInstance = axios.create({
+                baseURL: 'http://localhost:8080/Netbanking1',
+                timeout: 5000,
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: sessionStorage.getItem('token'),
+                },
+            });
+            const response = await axiosInstance.get('/accounts');
+            const accounts = response.data;
+
+            accounts.forEach(account => {
+                const option = document.createElement("option");
+                option.value = account.accountNumber;
+                option.textContent = `Account: ${account.accountNumber}`;
+                fromAccountDropdown.appendChild(option);
+
+                if (userRole === "customer") {
+                    const toOption = document.createElement("option");
+                    toOption.value = account.accountNumber;
+                    toOption.textContent = `Account: ${account.accountNumber}`;
+                    toAccountDropdown.appendChild(toOption);
+                }
+            });
+        } catch (error) {
+            console.error("Error fetching accounts:", error);
+        }
+    }
+
+    // Apply role-based configurations
+    configureRoleBasedUI();
     fetchAccounts();
 });

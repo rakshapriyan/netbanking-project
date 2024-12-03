@@ -9,9 +9,9 @@ window.onload = function() {
 
     // Create Employee's Sidebar Links
     const employeeLinks = `
-    <li><a href="#account" onclick="loadAccount()">Dashboard</a></li>
+    <li><a href="/employeeDashboard.html" onclick="loadAccount()">Dashboard</a></li>
         <li><a href="#account" onclick="loadAccount()">Accounts</a></li>
-        <li><a href="#transfer" onclick="loadTransfer()">Transfer Amount</a></li>
+        <li><a href="/transfer.html" onclick="loadTransfer()">Transfer Amount</a></li>
         <li><a href="/transaction.html" onclick="loadTransaction()">Transactions</a></li>
         <li><a href="#profile" onclick="loadProfile()">Profile</a></li>
         <li><a href="#logout" onclick="logout()">Logout</a></li>
@@ -19,9 +19,9 @@ window.onload = function() {
 
     // Create Manager's Sidebar Links
     const managerLinks = `
-    <li><a href="#dashboard" onclick="loadDashboard()">Dashboard</a></li>
+    <li><a href="/employeeDashboard.html" onclick="loadDashboard()">Dashboard</a></li>
     <li><a href="#employee-management" onclick="loadEmployeeManagement()">Employee Management</a></li>
-    <li><a href="#transfer" onclick="loadTransfer()">Transfer Amount</a></li>
+    <li><a href="/transfer.html" onclick="loadTransfer()">Transfer Amount</a></li>
     <li><a href="/transaction.html" onclick="loadTransaction()">Transactions</a></li>
     <li><a href="#analytics" onclick="loadAnalytics()">Analytics</a></li>
     <li><a href="#profile" onclick="loadProfile()">Profile</a></li>

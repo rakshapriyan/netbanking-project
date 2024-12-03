@@ -1,56 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetBanking Login</title>
-    <link rel="stylesheet" href="./css/login.css">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Professional Page</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <!-- MDB CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet">
+  <!-- MDB JS -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <style>
+    .login-container{
+        height: 100vh;
+        width: 100%;
+    }
+  </style>
 </head>
 <body>
-    <div class="background">
-        <!-- Blue-themed subtle animations -->
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-    </div>
+  <!-- Section: Design Block -->
+  
     <div class="login-container">
-        <!-- Logo at the top -->
-        <div class="logo">
-            <img src="logo.png" alt="Logo" class="logo-img">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+          <div class="card" style="border-radius: 2rem;">
+            <div class="row g-0">
+              <div class="col-md-6 col-lg-5 d-none d-md-block">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                  alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+              </div>
+              <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                <div class="card-body p-4 p-lg-5 text-black">
+                  <form id="loginForm">
+                    <div class="d-flex align-items-center mb-3 pb-1">
+                      <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                      <span class="h1 fw-bold mb-0">Logo</span>
+                    </div>
+  
+                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+  
+                    <div data-mdb-input-init class="form-outline mb-4">
+                      <input type="text" id="username" class="form-control form-control-lg" required />
+                      <label class="form-label" for="username">Email address</label>
+                    </div>
+  
+                    <div data-mdb-input-init class="form-outline mb-4">
+                      <input type="password" id="password" class="form-control form-control-lg" required />
+                      <label class="form-label" for="password">Password</label>
+                    </div>
+  
+                    <div class="pt-1 mb-4">
+                      <button data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-lg btn-block" type="submit">Login</button>
+                    </div>
+  
+                    <a class="small text-muted" href="#!">Forgot password?</a>
+                    
+                    <a href="#!" class="small text-muted">Terms of use.</a>
+                    <a href="#!" class="small text-muted">Privacy policy</a>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        
-        <h1>Welcome to NetBanking</h1>
-        <p class="instructions-header">Please enter your username and password to access your account.</p>
-        <form id="loginForm" action="POST">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Enter your username" autocomplete="username" required>
-                <small class="help-text">Your username is typically your registered email address.</small>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
-                <small class="help-text">Ensure your password is at least 8 characters long.</small>
-            </div>
-            <button type="submit" class="btn">Login</button>
-
-            <div class="forgot-password">
-                <a href="#">Forgot Password?</a>
-            </div>
-            
-            <!-- Instructions Section -->
-            <div class="instructions">
-                <h3>Instructions:</h3>
-                <ul>
-                    <li>Ensure your login credentials are correct.</li>
-                    <li>Do not share your username or password with anyone.</li>
-                    <li>For security, always logout after accessing your account.</li>
-                    <li>If you face any issues, contact our support team.</li>
-                </ul>
-            </div>
-        </form>
+      </div>
     </div>
-    <script src="./js/login.js"></script>
+
+  <!-- Section: Design Block -->
+  <script src="./js/login.js"></script>
 </body>
 </html>

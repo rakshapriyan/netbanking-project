@@ -112,13 +112,6 @@ document.getElementById("downloadButton").addEventListener("click", () => {
 
 
 // Sample data for accounts (this can be fetched from an API)
-const accounts = [
-    "Account 1",
-    "Account 2",
-    "Account 3",
-    "Account 4",
-    "Account 5"
-];
 
 // Function to filter accounts based on input and show dropdown
 function filterAccounts() {
@@ -147,5 +140,77 @@ function filterAccounts() {
         dropdownMenu.style.display = 'none';
     }
 }
+
+
+
+// Array of items for the dropdown
+const itemsList = [
+    'Apple',
+    'Banana',
+    'Cherry',
+    'Grape',
+    'Orange',
+    'Peach',
+    'Pear',
+    'Watermelon'
+];
+
+// Function to show the dropdown
+function showDropdown() {
+    const menu = document.getElementById('dropdownMenu');
+    menu.style.display = 'block';
+}
+
+// Function to filter items in the dropdown based on the search input
+function filterItems() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const menu = document.getElementById('dropdownMenu');
+
+    // Clear previous items in the dropdown
+    menu.innerHTML = '';
+
+    // Filter items and populate the dropdown
+    const filteredItems = itemsList.filter(item => item.toLowerCase().includes(filter));
+
+    if (filter === '') {
+        menu.style.display = 'none'; // Hide dropdown when input is empty
+        return;
+    }
+
+    // Add filtered items to the dropdown
+    filteredItems.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        li.onclick = () => selectItem(item);
+        menu.appendChild(li);
+    });
+
+    if (filteredItems.length > 0) {
+        menu.style.display = 'block'; // Show dropdown if there are filtered items
+    } else {
+        menu.style.display = 'none'; // Hide dropdown if no items match
+    }
+}
+
+// Function to select an item from the dropdown
+function selectItem(item) {
+    const input = document.getElementById('searchInput');
+    input.value = item; // Set the input value to the selected item
+    const menu = document.getElementById('dropdownMenu');
+    menu.style.display = 'none'; // Hide the dropdown after selection
+}
+
+// Close the dropdown if the user clicks outside of it
+document.addEventListener('click', function(event) {
+    const dropdownContainer = document.getElementById('dropdownContainer');
+    const menu = document.getElementById('dropdownMenu');
+    const input = document.getElementById('searchInput');
+
+    if (!dropdownContainer.contains(event.target)) {
+        menu.style.display = 'none'; // Hide the dropdown if the click is outside
+    }
+});
+
 
 filterAccounts()

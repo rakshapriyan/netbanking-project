@@ -63,7 +63,8 @@ body {
     border-collapse: collapse;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    overflow: hidden;
+    position: relative; /* Ensure proper stacking context */
+    overflow: visible;
     animation: zoomIn 1s ease;
 }
 
@@ -266,3 +267,45 @@ body {
     margin-top: 20px;
 }
 
+.dropdown {
+    position: relative;
+    width: 300px;
+    z-index: 10; /* Ensure the dropdown is above other elements */
+}
+
+#dropdownMenu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+    display: none; /* Hidden by default */
+    position: absolute; /* Allow it to overlay other content */
+    width: 100%;
+    background-color: #fff;
+    z-index: 20; /* Higher than the transaction table */
+    max-height: 150px;
+    overflow-y: auto;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow for visibility */
+}
+
+
+#searchInput {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 4px;
+}
+
+
+#dropdownMenu li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+#dropdownMenu li:hover {
+    background-color: #f1f1f1;
+}

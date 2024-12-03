@@ -73,7 +73,8 @@ public class AuthenticationFilter implements Filter {
 
                 chain.doFilter(request, response);
             } catch (Exception e) {
-                System.err.println("Error processing token: " + e.getMessage());
+                System.err.println("Error processing token here: " + e.getMessage());
+                e.printStackTrace();
                 httpResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             }
         } else {

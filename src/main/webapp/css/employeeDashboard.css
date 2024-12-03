@@ -1,6 +1,7 @@
 /* Dashboard Main Styling */
 .dashboard-main {
-    margin-left: 260px;
+    margin-left: 220px;
+    margin-right: 220px;
     padding: 20px;
     font-family: 'Arial', sans-serif;
   }

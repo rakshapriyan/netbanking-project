@@ -4,6 +4,11 @@ body {
     font-family: Arial, sans-serif;
     background: #f4f4f9;
     color: #333;
+    transition: filter 0.3s ease;
+}
+
+body.blurred {
+    filter: blur(8px); /* Blur effect when title animation plays */
 }
 
 /* Navbar Styling */
@@ -13,82 +18,127 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 2rem;
+    padding: 2rem 2rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
     z-index: 1000;
+    font-size: 1.4rem;
 }
 
 .navbar .logo {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
+    flex: 0 0 auto; /* Fixed at the left */
 }
 
-/* Navigation Links */
-.navbar ul {
+#nav-links {
     list-style: none;
     display: flex;
+    flex: 1;
+    justify-content: center; /* Center links */
+    gap: 30px;
     margin: 0;
     padding: 0;
 }
 
-.navbar ul li {
-    position: relative;
-    margin: 0 10px;
+#nav-links li {
+    margin: 0;
 }
 
-.navbar ul li a {
-    text-decoration: none;
+#nav-links .nav-link {
     color: white;
-    padding: 0.75rem 1rem;
+    font-size: 1.3rem;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+#nav-links .nav-link:hover {
+    color: #ffd700;
+    transform: scale(1.1);
+}
+
+/* Profile Section */
+.profile {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.profile-link {
+    color: white;
+    text-decoration: none;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.profile:hover .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
     display: block;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-.navbar ul li a:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
+.dropdown-item:hover {
+    background: #2575fc;
+    color: white;
 }
 
-/* Zoom Animation */
-@keyframes zoomText {
+/* Movie Title Animation */
+.movie-title {
+    position: fixed; /* Ensure it stays relative to the viewport */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center it perfectly */
+    color: white;
+    font-size: 5rem;
+    font-weight: bold;
+    text-align: center;
+    z-index: 9999;
+    animation: titleFadeInOut 0.5s ease-in-out;
+    background: linear-gradient(45deg, #ff6a00, #ee0979);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Title Animation Keyframes */
+@keyframes titleFadeInOut {
     0% {
-        transform: scale(1);
-        opacity: 0.5;
+        opacity: 0;
+        transform: translate(-50%, -60%); /* Starts slightly above center */
     }
     50% {
-        transform: scale(2.5);
         opacity: 1;
+        transform: translate(-50%, -50%); /* Fully visible at the center */
     }
     100% {
-        transform: scale(1);
-        opacity: 0.5;
+        opacity: 0;
+        transform: translate(-50%, -40%); /* Moves slightly below center */
     }
-}
-
-.clicked-animation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    z-index: 9999;
-    animation: zoomText 2s ease-in-out forwards;
-    font-size: 3rem;
-}
-
-/* Highlight Active Link */
-.navbar ul li a.active {
-    background: linear-gradient(90deg, #2575fc, #6a11cb);
-    color: white;
-    border-radius: 5px;
-    font-weight: bold;
-    padding: 0.75rem 1.5rem;
-    transition: all 0.3s ease-in-out;
 }

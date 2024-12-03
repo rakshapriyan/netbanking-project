@@ -71,13 +71,17 @@ public class ConvertJson {
 
     // Utility method to parse an object from JSONObject
     private static <T> T parseObject(JSONObject jsonObject, Class<T> clazz) {
-        try {
-            T obj = clazz.getDeclaredConstructor().newInstance();
-            while (clazz != null && !clazz.getSimpleName().equals("Object")) { // Loop through class hierarchy
-                Field[] fields = clazz.getDeclaredFields();
-                for (Field field : fields) {
-                    field.setAccessible(true); // Access private fields
-                    if (jsonObject.has(field.getName())) {
+    try {
+        T obj = clazz.getDeclaredConstructor().newInstance();
+        while (clazz != null && !clazz.getSimpleName().equals("Object")) { // Loop through class hierarchy
+            Field[] fields = clazz.getDeclaredFields();
+            for (Field field : fields) {
+                field.setAccessible(true); // Access private fields
+                if (jsonObject.has(field.getName())) {
+                    if (jsonObject.isNull(field.getName())) {
+                        // Explicitly assign null for null values in JSON
+                        field.set(obj, null);
+                    } else {
                         Object value = jsonObject.get(field.getName());
                         // Handle field type casting
                         if (field.getType().isAssignableFrom(value.getClass())) {
@@ -101,13 +105,14 @@ public class ConvertJson {
                         }
                     }
                 }
-                clazz = (Class<T>) clazz.getSuperclass(); // Move to the parent class
             }
-            return obj;
-        } catch (Exception e) {
-            throw new RuntimeException("Error converting JSON to object: " + e.getMessage(), e);
+            clazz = (Class<T>) clazz.getSuperclass(); // Move to the parent class
         }
+        return obj;
+    } catch (Exception e) {
+        throw new RuntimeException("Error converting JSON to object: " + e.getMessage(), e);
     }
+}
 
     // Helper method to get request body as JSONObject
     public static JSONObject getRequestBodyAsJson(HttpServletRequest request) throws IOException, JSONException {

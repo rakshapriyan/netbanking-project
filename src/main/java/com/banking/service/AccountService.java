@@ -1,6 +1,5 @@
 package com.banking.service;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -53,6 +52,19 @@ public class AccountService {
 	    return id;
 	}
 	
+	
+	public Account getAccountById(long accountNumber) {
+		Criteria c = new Criteria();
+		c.setColumn("accountNumber");
+		c.setCompareOperator(" = ");
+		c.setValue(String.valueOf(accountNumber));
+		List<Criteria> criterias = new ArrayList<Criteria>();
+		criterias.add(c);
+		
+		Account account = (Account) dbService.get(Account.class, criterias, null).get(0);
+		return account;
+	}
+	
 	public List<AccountDetails> getAccountWithBranch(long userId){
 		String query = queryBuilder.table("Account").select("*")
 				.join("branch", "account.branch_id", "branch.branch_id")
@@ -87,12 +99,29 @@ public class AccountService {
         return accountDetailsList;
 		
 	}
+	
+	public List<Account> getAllAccountWithBranch(long branchId){
+		Criteria c = new Criteria();
+		c.setColumn("branchId");
+		c.setCompareOperator(" = ");
+		c.setValue(String.valueOf(branchId));
+		List<Criteria> criterias = new ArrayList<Criteria>();
+		criterias.add(c);
+		List<Account> accounts = dbService.get(Account.class, criterias, null);
+		return accounts;
+	}
+	
+	public List<Account> getAllAccount(){
+		
+		List<Account> accounts = dbService.get(Account.class, null, null);
+		return accounts;
+	}
 
 
 	public static void main(String[] args) {
 		AccountService accountService = new AccountService();
 
-		System.out.println(accountService.getAccountWithBranch(1L));
+		System.out.println(accountService.getAllAccount());
 
 	}
 

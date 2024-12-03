@@ -1,23 +1,32 @@
 document.addEventListener("DOMContentLoaded", async () => {
-
   const token = sessionStorage.getItem("token");
-    const role = sessionStorage.getItem("role");
+  const role = sessionStorage.getItem("role");
 
-    if (token && role === "customer") {
-        // Redirect based on the user's role
-        
-            window.location.href = '/dashboard.html';
-        
-        } else {
-            console.error("Unknown role. Logging out.");
-            sessionStorage.clear();
-            window.location.href = '/login.html';
-        }
-    
+  // Validate session and redirect based on role
+  if (!token || !role) {
+    console.error("Invalid session. Redirecting to login.");
+    sessionStorage.clear();
+    window.location.href = '/login.html';
+    return; // Ensure no further code executes
+  }
 
+  if (role === "manager" || role === "employee") {
+    console.log("Redirecting to employee dashboard.");
+    window.location.href = '/employeeDashboard.html';
+    return;
+  }
 
+  if (role !== "customer") {
+    console.error("Unknown role. Redirecting to login.");
+    sessionStorage.clear();
+    window.location.href = '/login.html';
+    return;
+  }
 
+  // If role is 'customer', continue to load the dashboard
+  console.log("Welcome to the customer dashboard.");
 
+  // DOM elements
   const accountDropdown = document.getElementById("accountDropdown");
   const transactionsTableBody = document.getElementById("transactionsTable").querySelector("tbody");
   const totalBalanceCard = document.getElementById("totalBalance");
@@ -27,25 +36,23 @@ document.addEventListener("DOMContentLoaded", async () => {
   let accounts = [];
   let transactions = [];
 
-  // Initialize Axios instance
+  // Axios instance for making API calls
   const axiosInstance = axios.create({
     baseURL: "http://localhost:8080/Netbanking1",
     timeout: 5000,
     headers: {
       "Content-Type": "application/json",
-      Authorization: sessionStorage.getItem("token"),
+      Authorization: token,
     },
   });
 
-  /**
-   * Fetch accounts and populate the dropdown and total balance.
-   */
+  // Function to fetch accounts and populate the dropdown and total balance
   const fetchAccounts = async () => {
     try {
       const response = await axiosInstance.get("/accounts");
       accounts = response.data;
 
-      // Populate the account dropdown
+      // Populate account dropdown
       accounts.forEach((account) => {
         const option = document.createElement("option");
         option.value = account.accountNumber;
@@ -62,13 +69,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   };
 
-  /**
-   * Fetch transactions and display them.
-   */
+  // Function to fetch transactions
   const fetchTransactions = async () => {
     try {
-      const response = await axiosInstance.get("/transactions"); // Corrected method to GET
+      const response = await axiosInstance.post("/transactions");
       transactions = response.data;
+
       displayTransactions();
       calculateTotals();
     } catch (error) {
@@ -77,10 +83,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   };
 
-  /**
-   * Display transactions in the table.
-   * @param {string} accountNumber - Filter transactions by account number (optional).
-   */
+  // Function to display transactions in the table
   const displayTransactions = (accountNumber = "all") => {
     transactionsTableBody.innerHTML = "";
 
@@ -107,9 +110,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   };
 
-  /**
-   * Calculate totals for credited and debited transactions in the last 10 days.
-   */
+  // Function to calculate totals for credited and debited transactions in the last 10 days
   const calculateTotals = () => {
     const tenDaysAgo = Date.now() - 10 * 24 * 60 * 60 * 1000;
 
@@ -125,9 +126,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     totalDebited.textContent = `$${debitedTotal.toFixed(2)}`;
   };
 
-  /**
-   * Download transactions as a CSV file.
-   */
+  // Function to download transactions as a CSV file
   const downloadTransactions = () => {
     const csvContent =
       "data:text/csv;charset=utf-8," +

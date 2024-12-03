@@ -1,0 +1,253 @@
+
+.total-container {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #ffffff;
+  color: #000000; /* Text color set to black */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Container */
+.container {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  
+  max-width: 850px;
+  padding: 3rem;
+  animation: fadeIn 1s ease-out;
+  position: relative;
+  transition: all 0.3s ease;
+  transform: scale(1);
+}
+
+.container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: #000000; /* Black-colored text */
+  margin-bottom: 2rem;
+  position: relative;
+  transition: color 0.3s ease-in-out;
+}
+
+.page-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #1e90ff;
+  margin: 0.5rem auto 0;
+  border-radius: 4px;
+}
+
+/* Dropdown */
+.dropdown-container {
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+label {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #000000;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.dropdown-field {
+  position: relative;
+}
+
+#account-search {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+  background: #f4f4f4;
+  color: #333;
+}
+
+#account-search:focus {
+  border-color: #1e90ff;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(30, 144, 255, 0.3);
+  transform: scale(1.02);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  max-height: 250px;
+  overflow-y: auto;
+  padding: 0;
+  list-style: none;
+  animation: slideDown 0.3s ease-out;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  color: #000000;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dropdown-menu li:hover {
+  background: #1e90ff;
+  color: #ffffff;
+}
+
+/* Account Details Form */
+.account-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+input {
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+input:focus {
+  border-color: #1e90ff;
+  background: #ffffff;
+  box-shadow: 0 4px 8px rgba(30, 144, 255, 0.3);
+  outline: none;
+  transform: scale(1.02);
+}
+
+input[readonly] {
+  background: #f4f6fa;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: scale(0.9);
+  }
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Button */
+button {
+  padding: 1rem 2rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  background: #1e90ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin: 2rem auto 0;
+  width: 100%;
+}
+
+button:hover {
+  background: #1477cc;
+  box-shadow: 0 4px 8px rgba(20, 119, 204, 0.3);
+  transform: translateY(-3px);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .account-details {
+      grid-template-columns: 1fr;
+  }
+
+  .container {
+      padding: 2rem;
+  }
+
+  .page-title {
+      font-size: 2rem;
+  }
+
+  label {
+      font-size: 1rem;
+  }
+
+  input {
+      font-size: 1rem;
+  }
+
+  #account-search {
+      font-size: 1rem;
+  }
+
+  .dropdown-menu li {
+      font-size: 1rem;
+  }
+}

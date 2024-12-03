@@ -201,3 +201,13 @@ select {
         width: 100%;
     }
 }
+
+
+/* Add this to ./css/transfer.css */
+.dropdown-search {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
