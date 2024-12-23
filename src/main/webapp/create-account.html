@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account</title>
+  <link rel="stylesheet" href="./css/create-account.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Create Account</h1>
+        
+        <!-- Searchable Dropdown -->
+        <div class="search-dropdown">
+          <label for="customer-search">Select Customer ID:</label>
+          <input type="text" id="customer-search" placeholder="Search Customer ID">
+          <ul id="dropdown-list" class="dropdown-list hidden">
+            <!-- Dynamic Options -->
+          </ul>
+        </div>
+        
+        <!-- Non-editable Customer Details -->
+        <div id="customer-details" class="customer-details hidden">
+          <h2>Customer Details</h2>
+          <div>
+            <label>Customer Name:</label>
+            <input type="text" id="customer-name" readonly>
+          </div>
+          <div>
+            <label>Customer Email:</label>
+            <input type="text" id="customer-email" readonly>
+          </div>
+        </div>
+        
+        <!-- Account Creation Form -->
+        <form id="account-form" class="account-form hidden">
+          <h2>Create New Account</h2>
+          <div>
+            <label for="account-type">Account Type:</label>
+            <select id="account-type">
+              <option value="savings">Savings</option>
+              <option value="current">Current</option>
+              <option value="fixed">Fixed Deposit</option>
+            </select>
+          </div>
+          <div>
+            <label for="initial-deposit">Initial Deposit:</label>
+            <input type="number" id="initial-deposit" placeholder="Enter amount" required>
+          </div>
+          <button type="submit" class="btn-submit">Create Account</button>
+        </form>
+      </div>
+  <script src="./js/create-account.js"></script>
+</body>
+</html>

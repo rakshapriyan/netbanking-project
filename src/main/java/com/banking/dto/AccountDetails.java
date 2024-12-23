@@ -7,7 +7,6 @@ public class AccountDetails {
 	private BigDecimal balance;
 	private String accountStatus;
 	private Long dateOpened;
-	private String name;
 	private String ifscCode;
 	private String city;
 	private String state;
@@ -39,12 +38,7 @@ public class AccountDetails {
 	public void setDateOpened(Long dateOpened) {
 		this.dateOpened = dateOpened;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	
 	public String getIfscCode() {
 		return ifscCode;
 	}
@@ -72,7 +66,7 @@ public class AccountDetails {
 	@Override
 	public String toString() {
 		return "AccountDetails [accountNumber=" + accountNumber + ", balance=" + balance + ", accountStatus="
-				+ accountStatus + ", dateOpened=" + dateOpened + ", name=" + name + ", ifscCode=" + ifscCode + ", city="
+				+ accountStatus + ", dateOpened=" + dateOpened + ", " + ", ifscCode=" + ifscCode + ", city="
 				+ city + ", state=" + state + ", pincode=" + pincode + "]";
 	}
 

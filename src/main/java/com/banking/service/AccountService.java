@@ -12,6 +12,8 @@ import com.banking.config.QueryBuilder;
 import com.banking.databaseOperations.DBService;
 import com.banking.dto.AccountDetails;
 import com.banking.entity.Account;
+import com.banking.entity.Branch;
+import com.banking.util.Constant;
 
 
 public class AccountService {
@@ -22,7 +24,7 @@ public class AccountService {
 
 	public AccountService() {
 		queryBuilder = new QueryBuilder();
-		dbService = new DBService("/home/raksh-pt7616/eclipse-ee-workspace/Netbanking1/src/main/java/mapping.yaml");
+		dbService = new DBService(Constant.YAML_PATH);
 	}
 
 	public void addAccount(Account account) throws SQLException {
@@ -82,7 +84,6 @@ public class AccountService {
                     accountDetails.setBalance(resultSet.getBigDecimal("balance"));
                     accountDetails.setAccountStatus(resultSet.getString("account_status"));
                     accountDetails.setDateOpened(resultSet.getLong("date_opened"));
-                    accountDetails.setName(resultSet.getString("name"));
                     accountDetails.setIfscCode(resultSet.getString("ifsc_code"));
                     accountDetails.setCity(resultSet.getString("city"));
                     accountDetails.setState(resultSet.getString("state"));
@@ -115,6 +116,35 @@ public class AccountService {
 		
 		List<Account> accounts = dbService.get(Account.class, null, null);
 		return accounts;
+	}
+	
+	
+	public List<AccountDetails> toAccountDetails(List<Account> accounts){
+		List<AccountDetails> accountDetailss = new ArrayList<>();
+		List<Branch> branchs = new BranchService().getAllBranches();
+		for(Account account : accounts) {
+			Branch branch = getBranchBybranchId(account.getBranchId(), branchs);
+			AccountDetails ad = new AccountDetails();
+			ad.setAccountNumber(account.getAccountNumber());
+			ad.setAccountStatus(account.getAccountStatus());
+			ad.setBalance(account.getBalance());
+			ad.setCity(branch.getCity());
+			ad.setDateOpened(account.getCreatedTimestamp());
+			ad.setIfscCode(branch.getIfscCode());
+			ad.setPincode(branch.getPincode());
+			ad.setState(branch.getState());
+		}
+		
+		return accountDetailss;
+	}
+	
+	public Branch getBranchBybranchId(Long branchId,List<Branch> branchs ) {
+		for(Branch b : branchs) {
+			if(b.getBranchId() == branchId) {
+				return b;
+			}
+		}
+		return null;
 	}
 
 

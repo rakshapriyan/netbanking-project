@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.banking.util.Constant;
+
 public class QueryBuilder {
     private List<String> columns;
     private List<String> conditions;
@@ -22,7 +24,7 @@ public class QueryBuilder {
 
     public QueryBuilder() {
         // Initializing the configReader and other lists
-        this.configReader = new ConfigReader("/home/raksh-pt7616/eclipse-ee-workspace/Netbanking1/src/main/java/mapping.yaml");
+        this.configReader = new ConfigReader(Constant.YAML_PATH);
         this.columns = new ArrayList<>();
         this.conditions = new ArrayList<>();
         this.values = new ArrayList<>();

@@ -7,9 +7,6 @@ body {
     transition: filter 0.3s ease;
 }
 
-body.blurred {
-    filter: blur(8px); /* Blur effect when title animation plays */
-}
 
 /* Navbar Styling */
 .navbar {
@@ -106,39 +103,4 @@ body.blurred {
 .dropdown-item:hover {
     background: #2575fc;
     color: white;
-}
-
-/* Movie Title Animation */
-.movie-title {
-    position: fixed; /* Ensure it stays relative to the viewport */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Center it perfectly */
-    color: white;
-    font-size: 5rem;
-    font-weight: bold;
-    text-align: center;
-    z-index: 9999;
-    animation: titleFadeInOut 0.5s ease-in-out;
-    background: linear-gradient(45deg, #ff6a00, #ee0979);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Title Animation Keyframes */
-@keyframes titleFadeInOut {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, -60%); /* Starts slightly above center */
-    }
-    50% {
-        opacity: 1;
-        transform: translate(-50%, -50%); /* Fully visible at the center */
-    }
-    100% {
-        opacity: 0;
-        transform: translate(-50%, -40%); /* Moves slightly below center */
-    }
 }

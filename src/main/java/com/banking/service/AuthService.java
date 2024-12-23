@@ -18,6 +18,7 @@ import com.banking.dto.AccountDetails;
 import com.banking.entity.Customer;
 import com.banking.entity.Employee;
 import com.banking.entity.LoginActivity;
+import com.banking.util.Constant;
 
 public class AuthService {
 
@@ -27,7 +28,7 @@ public class AuthService {
 
 	public AuthService() {
 		queryBuilder = new QueryBuilder();
-		dbService = new DBService("/home/raksh-pt7616/eclipse-ee-workspace/Netbanking1/src/main/java/mapping.yaml");
+		dbService = new DBService(Constant.YAML_PATH);
 	}
 
 	public Optional<Customer> getUserByEmailOrUsername(String email) {

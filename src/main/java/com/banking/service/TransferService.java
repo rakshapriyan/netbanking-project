@@ -14,6 +14,7 @@ import com.banking.databaseOperations.DBService;
 import com.banking.dto.TransferDTO;
 import com.banking.entity.Account;
 import com.banking.entity.Transaction;
+import com.banking.util.Constant;
 import com.banking.util.ThreadLocale;
 
 public class TransferService {
@@ -24,7 +25,7 @@ public class TransferService {
 
 	public TransferService() {
 		queryBuilder = new QueryBuilder();
-		dbService = new DBService("/home/raksh-pt7616/eclipse-ee-workspace/Netbanking1/src/main/java/mapping.yaml");
+		dbService = new DBService(Constant.YAML_PATH);
 		service = new AccountService();
 	}
 	
