@@ -267,7 +267,23 @@ main {
     background-color: #f1f1f1;
 }
 
+.modal-header button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
+#edit-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#submit-btn {
+    background-color: #008CBA;
+    color: white;
+}
 
 /* Animations */
 @keyframes fadeIn {

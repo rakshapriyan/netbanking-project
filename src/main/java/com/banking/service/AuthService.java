@@ -173,11 +173,6 @@ public class AuthService {
 	}
 
 
-	public void registerCustomer(Customer customer) throws SQLException {
-		dbService.insert(customer);
-
-	}
-	
 	public static void main(String[] args) {
 		AuthService authService = new AuthService();
 		authService.getUserByEmailOrUsername("john_Doe");

@@ -3,6 +3,7 @@ package com.banking.service;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +11,12 @@ import com.banking.config.Criteria;
 import com.banking.config.DBConfig;
 import com.banking.config.QueryBuilder;
 import com.banking.databaseOperations.DBService;
+import com.banking.dto.AccountCreationDetail;
 import com.banking.dto.AccountDetails;
 import com.banking.entity.Account;
 import com.banking.entity.Branch;
 import com.banking.util.Constant;
+import com.banking.util.ThreadLocale;
 
 
 public class AccountService {
@@ -27,7 +30,15 @@ public class AccountService {
 		dbService = new DBService(Constant.YAML_PATH);
 	}
 
-	public void addAccount(Account account) throws SQLException {
+	public void addAccount(AccountCreationDetail accountCreationDetail) throws SQLException {
+		Account account = new Account();
+		account.setCustomerId(accountCreationDetail.getCustomerId());
+		account.setBranchId(accountCreationDetail.getBranchId());
+		account.setBalance(accountCreationDetail.getInitialBalance());
+		account.setAccountStatus("Active");
+		account.setDateOpened(Instant.now().toEpochMilli());
+		account.setCreatedBy(ThreadLocale.getUser().getUserId());
+		account.setCreatedTimestamp(Instant.now().toEpochMilli());
 		dbService.insert(account);
 	}
 
@@ -79,7 +90,6 @@ public class AccountService {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     AccountDetails accountDetails = new AccountDetails();
-
                     accountDetails.setAccountNumber(resultSet.getLong("account_number"));
                     accountDetails.setBalance(resultSet.getBigDecimal("balance"));
                     accountDetails.setAccountStatus(resultSet.getString("account_status"));
@@ -115,13 +125,16 @@ public class AccountService {
 	public List<Account> getAllAccount(){
 		
 		List<Account> accounts = dbService.get(Account.class, null, null);
+		System.out.println(accounts);
 		return accounts;
 	}
 	
 	
 	public List<AccountDetails> toAccountDetails(List<Account> accounts){
 		List<AccountDetails> accountDetailss = new ArrayList<>();
+		
 		List<Branch> branchs = new BranchService().getAllBranches();
+		
 		for(Account account : accounts) {
 			Branch branch = getBranchBybranchId(account.getBranchId(), branchs);
 			AccountDetails ad = new AccountDetails();
@@ -133,8 +146,11 @@ public class AccountService {
 			ad.setIfscCode(branch.getIfscCode());
 			ad.setPincode(branch.getPincode());
 			ad.setState(branch.getState());
+			
+			accountDetailss.add(ad);
 		}
-		
+		System.out.println("Account Detailsssssssssssssssssssssssss");
+		System.out.println(accountDetailss);
 		return accountDetailss;
 	}
 	

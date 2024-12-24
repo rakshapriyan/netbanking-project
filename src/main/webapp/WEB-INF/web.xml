@@ -75,7 +75,16 @@
     </servlet-mapping>
     
     
+     <servlet>
+        <servlet-name>CustomerServlet</servlet-name>
+        <servlet-class>com.banking.servlets.CustomerServlet</servlet-class>
+    </servlet>
     
+    <!-- Servlet Mapping -->
+    <servlet-mapping>
+        <servlet-name>CustomerServlet</servlet-name>
+        <url-pattern>/customerDetails</url-pattern>
+    </servlet-mapping>
     
     
     

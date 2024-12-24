@@ -1,6 +1,7 @@
 package com.banking.logical;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONException;
 
+import com.banking.dto.AccountCreationDetail;
 import com.banking.entity.Account;
 import com.banking.service.AccountService;
 import com.banking.service.AuthService;
@@ -42,6 +44,21 @@ public class AccountImpl {
 		 String json = ConvertJson.toJson(accounts);
 		 
 		 response.getWriter().write(json);
+	}
+	
+	
+	public static void insertAccount(HttpServletRequest request, HttpServletResponse response){
+		try {
+			AccountCreationDetail accountCreationDetail = ConvertJson.fromJson(request, AccountCreationDetail.class);
+			
+			accountService.addAccount(accountCreationDetail);
+		} catch (IOException | JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

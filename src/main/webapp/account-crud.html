@@ -49,15 +49,15 @@
                 <h2>Filter Options</h2>
                 <form>
                     <label for="status">Status:</label>
-                    <select id="status" disabled>
+                    <select id="filter-status" disabled>
                         <option value="">Any</option>
                         <option value="Active">Active</option>
                         <option value="Inactive">Inactive</option>
                     </select>
                     <label for="city">City:</label>
-                    <input type="text" id="city" placeholder="City" disabled>
+                    <input type="text" id="filter-city" placeholder="City" disabled>
                     <label for="state">State:</label>
-                    <input type="text" id="state" placeholder="State" disabled>
+                    <input type="text" id="filter-state" placeholder="State" disabled>
                     <button class="apply-btn" onclick="applyFilter()" type="button">Apply</button>
                 </form>
             </div>
@@ -117,27 +117,37 @@
         <span class="close" onclick="closeCreateModal()">&times;</span>
         <h2>Create Account</h2>
         <form id="accountDetailsForm">
+            <!-- Customer ID with Searchable Dropdown -->
             <div class="input-container">
-                <label for="accountNumber">Customer Id:</label>
-                <input type="text" id="accountNumber" name="accountNumber">
+                <label for="customerId">Customer Id:</label>
+                <input type="text" id="customerId" name="customerId" list="customerDropdown" autocomplete="off" oninput="filterCustomers()">
+                <datalist id="customerDropdown">
+                    <!-- Options will be dynamically populated -->
+                </datalist>
             </div>
+            <!-- Branch ID with Searchable Dropdown -->
             <div class="input-container">
-                <label for="holderName">Branch Id:</label>
-                <input type="text" id="holderName" name="holderName">
+                <label for="BranchId">Branch Id:</label>
+                <input type="text" id="BranchId" name="BranchId" list="branchDropdown" autocomplete="off" oninput="filterBranches()">
+                <datalist id="branchDropdown">
+                    <!-- Sample Branch Data will be dynamically populated -->
+                </datalist>
             </div>
+            <!-- Initial Deposit -->
             <div class="input-container">
-                <label for="balance">Initial Deposit:</label>
-                <input type="text" id="balance" name="balance" >
+                <label for="initialDeposit">Initial Deposit:</label>
+                <input type="text" id="initialDeposit" name="initialDeposit">
             </div>
             
             <div class="modal-footer">
-                <button id="create-btn" type="button" onclick="deactivateAccount()">Create Account</button>
+                <button id="create-btn" type="button" onclick="createAccount()">Create Account</button>
             </div>
         </form>
     </div>
 </div>
-</div>
 
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./js/account-crud.js"></script>
     <script src="./js/navbar.js"></script>
 </body>
