@@ -67,14 +67,7 @@ function showAccountDetails(account) {
     document.getElementById('name').value = account.name;
     document.getElementById('phoneNumber').value = account.phoneNumber;
     document.getElementById('emailId').value = account.emailId;
-    document.getElementById('createdTimeStamp').value = new Date(account.createdTimeStamp);
-    document.getElementById('aadharNumber').value = account.aadharNumber;
-    document.getElementById('panNumber').value = account.panNumber;
-    document.getElementById('address').value = account.address;
-    document.getElementById('city').value = account.city;
-    document.getElementById('pincode').value = account.pincode;
-    
-
+    document.getElementById('createdTimeStamp').value = new Date(account.createdTimeStamp); 
     document.getElementById('detailsModal').style.display = 'block';
 }
 

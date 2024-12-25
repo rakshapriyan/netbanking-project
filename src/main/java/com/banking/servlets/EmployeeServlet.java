@@ -9,21 +9,23 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.banking.logical.CustomerImpl;
 
-public class CustomerServlet extends HttpServlet {
+public class EmployeeServlet extends HttpServlet{
+	
 	
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		CustomerImpl.getAllCustomers(request, response);
+		
 	}
 	
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		CustomerImpl.addCustomer(request, response);
+		
 	}
 	
 	
 	public void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		CustomerImpl.getAllCustomers(request, response);
+		
 	}
+
 }

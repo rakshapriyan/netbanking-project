@@ -1,20 +1,16 @@
 package com.banking.service;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.time.Instant;
-import java.util.EmptyStackException;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import com.banking.config.DBConfig;
 import com.banking.config.QueryBuilder;
 import com.banking.databaseOperations.DBService;
-import com.banking.dto.AccountDetails;
 import com.banking.entity.Customer;
 import com.banking.entity.Employee;
 import com.banking.entity.LoginActivity;

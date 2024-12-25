@@ -45,5 +45,20 @@ public class CustomerImpl {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public static void updateCustomer(HttpServletRequest request, HttpServletResponse response) {
+		Customer customer;
+		try {
+			customer = ConvertJson.fromJson(request, Customer.class);
+			customerService.addCustomer(customer);
+		} catch (IOException | JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }
