@@ -4,8 +4,7 @@ let customerIDs = [];
 
 window.onload = function () {
     // URL for the API call
-    const apiUrl = 'http://localhost:8080/Netbanking1/customerDetails';
-
+    const apiUrl = 'http://localhost:8080/Netbanking1/employeeDetails';
 
     const token = '1:Alice Manager:manager';
 
@@ -18,7 +17,7 @@ window.onload = function () {
             // Handle success
             sampleData = response.data;
             console.log(sampleData);
-            customerIDs = sampleData.map(account => `CUST${account.accountNumber}`);
+            // customerIDs = sampleData.map(account => `CUST${account.accountNumber}`);
             populateAccounts();
         })
         .catch(function (error) {
@@ -58,7 +57,6 @@ function closeFilterModal() {
     document.getElementById('filterModal').style.display = 'none';
 }
 
-
 // Show account details in a modal
 function showAccountDetails(account) {
     document.getElementById('customerId').value = account.userId;
@@ -68,6 +66,7 @@ function showAccountDetails(account) {
     document.getElementById('phoneNumber').value = account.phoneNumber;
     document.getElementById('emailId').value = account.emailId;
     document.getElementById('createdTimeStamp').value = new Date(account.createdTimeStamp); 
+    document.getElementById('branchId').value = account.branchId; 
     document.getElementById('detailsModal').style.display = 'block';
 }
 
@@ -87,8 +86,6 @@ function closeCreateModal() {
     document.getElementById('customerDropdown').style.display = 'none';
 }
 
-
-
 function createAccount() {
     // Get the form data
     const formData = {
@@ -97,12 +94,7 @@ function createAccount() {
         name: document.getElementById('name').value,
         phoneNumber: document.getElementById('phoneNumber').value,
         emailId: document.getElementById('emailId').value,
-        aadharNumber: document.getElementById('aadharNumber').value,
-        panNumber: document.getElementById('panNumber').value,
-        address: document.getElementById('address').value,
-        city: document.getElementById('city').value,
-        state: document.getElementById('state').value,
-        pincode: document.getElementById('pincode').value
+        branchId: document.getElementById('branchId').value,
     };
 
     // Send POST request to the server using Axios
@@ -157,7 +149,7 @@ function submitDetails() {
     console.log('Submitting data:', formData);
 
     // Submit the data (example using Axios)
-    axios.put('http://localhost:8080/Netbanking1/customerDetails', formData)
+    axios.put('http://localhost:8080/Netbanking1/employeeDetails', formData)
         .then(response => {
             alert('Account details updated successfully!');
             closeModal(); // Close the modal after submission
@@ -188,7 +180,6 @@ function deactivateAccount() {
         alert("Account deactivated.");
     }
 }
-
 
 // Close the modal when clicking outside
 window.onclick = function (event) {

@@ -120,3 +120,6 @@ function buildNavbar(links) {
 document.addEventListener("DOMContentLoaded", () => {
     buildNavbar(navLinks);
 });
+
+
+

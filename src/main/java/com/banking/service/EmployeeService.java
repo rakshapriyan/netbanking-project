@@ -23,6 +23,12 @@ public class EmployeeService {
     public List<Employee> getAllEmployees() {
         return dbService.get(Employee.class, null, null);
     }
+    
+    public List<Employee> getAllEmployeesInBranch(Long branchId) {
+        String query = queryBuilder.table("Employee").select("*").where("branchId", " = ",String.valueOf(branchId)).build();
+        List<Employee> employees = dbService.executeQuery(query, Employee.class);
+        return employees;      		
+    }
 
     public void addEmployee(Employee employee) throws SQLException {
         dbService.insert(employee);
@@ -41,6 +47,9 @@ public class EmployeeService {
 
         return employees.isEmpty() ? null : employees.get(0);
     }
+    
+    
+    
 
     public int updateEmployee(Employee employee) throws SQLException {
         Employee existingEmployee = getEmployeeById(employee.getEmployeeId());
@@ -79,4 +88,5 @@ public class EmployeeService {
 
         return 0;
     }
+    
 }

@@ -88,6 +88,17 @@
     
     
     
+     <servlet>
+        <servlet-name>EmployeeServlet</servlet-name>
+        <servlet-class>com.banking.servlets.EmployeeServlet</servlet-class>
+    </servlet>
+    
+    <!-- Servlet Mapping -->
+    <servlet-mapping>
+        <servlet-name>EmployeeServlet</servlet-name>
+        <url-pattern>/employeeDetails</url-pattern>
+    </servlet-mapping>
+    
     
     
     
